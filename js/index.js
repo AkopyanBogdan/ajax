@@ -16,11 +16,10 @@ function checkAccount() {
     // xhr.status - міститься код статуса протокола http. якщо 200 - все добре
     // xhr.responseText - тут знаходсяться дані
     // xhr.responseXML - тут знаходсяться дані якщо приходить xml
-    
+
     //2. Initialize XHR properties with parameters of a request
-    xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4 && xhr.status === 200)
-        {
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             //3. Make request
             //const data = xhr.responseText; // приходить рядок string
             const data = JSON.parse(xhr.responseText); // об'єкт js
@@ -34,10 +33,10 @@ function checkAccount() {
     //GET запит кешується.
     //POST не кешується
     //method (GET, POST, PUT, DELETE) - залежить від сервера
-    
+
     //щоб завжди слати унікальний GET запит:
     //до кожного запиту буде додавати додатково якесь число
-    xhr.open('GET', 'client-data.json?p='+Math.random(), true);
+    xhr.open('GET', 'client-data.json?p=' + Math.random(), true);
     xhr.send();
 }
 
@@ -45,16 +44,11 @@ document.getElementById('btn-get-fragment').addEventListener('click', getHtml);
 
 function getHtml() {
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4 && xhr.status === 200)
-        {
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             document.getElementById('container').innerHTML = xhr.responseText;
         }
     }
     xhr.open('GET', 'fragment.html', true);
     xhr.send();
 }
-
-
-
-
